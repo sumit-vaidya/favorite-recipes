@@ -1,14 +1,22 @@
 package com.project.favorite.recipes.entity;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
+import com.project.favorite.recipes.converter.LocalDateTimeConverter;
 
 @Entity
 public class Users {
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "userId", updatable = false, nullable = false)
 	private Integer userId;
 	
 	@Column(length = 15)
@@ -21,23 +29,25 @@ public class Users {
 	
 	private String status;
 	
-	private LocalDate createdAt;
+	@Convert(converter = LocalDateTimeConverter.class)
+	private LocalDateTime createdAt;
 	
-	private LocalDate updatedAt;
+	@Convert(converter = LocalDateTimeConverter.class)
+	private LocalDateTime updatedAt;
 
-	public LocalDate getCreatedAt() {
+	public LocalDateTime getCreatedAt() {
 		return createdAt;
 	}
 
-	public void setCreatedAt(LocalDate createdAt) {
+	public void setCreatedAt(LocalDateTime createdAt) {
 		this.createdAt = createdAt;
 	}
 
-	public LocalDate getUpdatedAt() {
+	public LocalDateTime getUpdatedAt() {
 		return updatedAt;
 	}
 
-	public void setUpdatedAt(LocalDate updatedAt) {
+	public void setUpdatedAt(LocalDateTime updatedAt) {
 		this.updatedAt = updatedAt;
 	}
 
