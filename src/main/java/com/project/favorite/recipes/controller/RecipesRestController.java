@@ -49,7 +49,7 @@ public class RecipesRestController {
 		return message;
 	}
 	
-	@GetMapping(value="/v1/ingredient/{recipeName}", produces="application/json")
+	@GetMapping(value="/v1/recipe/{recipeName}", produces="application/json")
 	@ApiOperation("Returns details of recipe from database belongs to a specific recipe name")
 	public RecipesDTO  findRecipeByRecipeName(@PathVariable String recipeName) {
 		return service.searchRecipeByRecipeName(recipeName);	

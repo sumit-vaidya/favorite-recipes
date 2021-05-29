@@ -7,5 +7,6 @@ import com.project.favorite.recipes.entity.Recipes;
 
 @Repository
 public interface RecipesRepository extends JpaRepository<Recipes, Integer> {
-
+	
+	Recipes findByRecipesName(String recipesName);
 }

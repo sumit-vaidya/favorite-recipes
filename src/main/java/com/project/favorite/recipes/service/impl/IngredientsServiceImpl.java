@@ -39,7 +39,7 @@ public class IngredientsServiceImpl implements IIngredientsService {
 		BeanUtils.copyProperties(ingredientsDTO, ingredients);
 		Ingredients searchedIngredients = ingredientsRepository.findByIngredientsName(ingredients.getIngredientsName());
 		if(searchedIngredients != null && searchedIngredients.getIngredientId() != 0) {
-			return "Ingredients already exist";
+			return "Ingredient already exists";
 		}
 		else {
 			ingredientsRepository.save(ingredients);
@@ -67,21 +67,17 @@ public class IngredientsServiceImpl implements IIngredientsService {
 			ingredientsRepository.saveAndFlush(ingredients);
 			return ingredientsDTO;
 		}
-		else {
-			
-			return null;
-		}
+		return null;
 	}
 
 	@Override
 	public String deleteIngredient(Integer id) {
+		String message = "Ingredient doesn't exist";
 		if(ingredientsRepository.existsById(id)) {
 			ingredientsRepository.deleteById(id);
-			return "Ingredient is deleted from database";
+			message = "Ingredient is deleted from database";
 		}
-		else {
-			return "Ingredient doesn't exist";
-		}
+		return message;
 	}
 
 }

@@ -30,6 +30,16 @@ public class Recipes {
 	
 	private String recipesType;
 	
+	private Integer noOfPerson;
+	
+	public Integer getNoOfPerson() {
+		return noOfPerson;
+	}
+
+	public void setNoOfPerson(Integer noOfPerson) {
+		this.noOfPerson = noOfPerson;
+	}
+
 	@Convert(converter = LocalDateTimeConverter.class)
 	private LocalDateTime createdAt;
 	
