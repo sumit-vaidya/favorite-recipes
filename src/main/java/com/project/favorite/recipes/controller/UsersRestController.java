@@ -12,7 +12,7 @@ import com.project.favorite.recipes.service.IUserService;
 import io.swagger.annotations.ApiOperation;
 
 @RestController
-public class UserRestController {
+public class UsersRestController {
 	
 	@Autowired
 	IUserService  service;

@@ -5,8 +5,6 @@ import java.time.LocalDateTime;
 import javax.persistence.Column;
 import javax.persistence.Convert;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import com.project.favorite.recipes.converter.LocalDateTimeConverter;
@@ -14,7 +12,6 @@ import com.project.favorite.recipes.converter.LocalDateTimeConverter;
 @Entity
 public class SelectedIngredients {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "selectedIngredientId", updatable = false, nullable = false)
 	private Integer selectedIngredientId;
 	

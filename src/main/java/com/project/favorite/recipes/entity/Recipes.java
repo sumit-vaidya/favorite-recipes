@@ -25,7 +25,7 @@ public class Recipes {
 	@Column(name = "recipesId", updatable = false, nullable = false)
 	private Integer recipesId;
 	
-	@Column(length = 25)
+	@Column(length = 30)
 	private String recipesName;
 	
 	private String recipesType;
