@@ -24,7 +24,7 @@ public class IngredientsRestController {
 	@Autowired
 	IIngredientsService  service;
 
-	@GetMapping(value="/allIngredients", produces="application/json")
+	@GetMapping(value="/v1/ingredients", produces="application/json")
 	@ApiOperation("Returns all ingredients details from database")
 	public ResponseEntity<List<IngredientsDTO>>  findAllIngredients() {
 		
@@ -32,13 +32,13 @@ public class IngredientsRestController {
 		return new ResponseEntity<List<IngredientsDTO>>(productDTOList, HttpStatus.OK);		
 	}
 	
-	@PostMapping(value="/ingredients/add", consumes="application/json", produces="text/plain")
+	@PostMapping(value="/v1/ingredient/add", consumes="application/json", produces="text/plain")
 	@ApiOperation("Adds a new ingredients details to the database")
 	public String addIngredient(@RequestBody IngredientsDTO ingredientsDTO) {
 		return service.addIngredient(ingredientsDTO);		
 	}
 	
-	@PutMapping(value="/ingredients/update", consumes="application/json", produces="text/plain")
+	@PutMapping(value="/v1/ingredient/update", consumes="application/json", produces="text/plain")
 	@ApiOperation("Updates an existing ingredients details in database")
 	public  String  updateIngredient(@RequestBody IngredientsDTO ingredientsDTO) {
 		IngredientsDTO dto=service.updateIngredient(ingredientsDTO);
@@ -50,13 +50,13 @@ public class IngredientsRestController {
 		}
 	}
 	
-	@GetMapping(value="/ingredients/{ingredientsName}", produces="application/json")
+	@GetMapping(value="/v1/ingredient/{ingredientsName}", produces="application/json")
 	@ApiOperation("Returns details of ingredients from database belongs to a specific ingredient name")
-	public IngredientsDTO  findProductsByManufacturer(@PathVariable String ingredientsName) {
+	public IngredientsDTO  findProductsByIngredientsName(@PathVariable String ingredientsName) {
 		return service.searchIngredientsByIngredientsName(ingredientsName);	
 	}
 	
-	@DeleteMapping(value="/ingredients/delete/{id}")
+	@DeleteMapping(value="/v1/ingredient/delete/{id}")
 	@ApiOperation("Deletes a specific ingredients details from the database")
 	public String deleteIngredient(@PathVariable Integer id) {
 		return service.deleteIngredient(id);

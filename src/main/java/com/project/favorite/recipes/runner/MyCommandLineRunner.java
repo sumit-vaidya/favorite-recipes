@@ -25,9 +25,11 @@ public class MyCommandLineRunner implements CommandLineRunner {
 		Ingredients ingredientsC = new Ingredients();
 		ingredientsC.setIngredientsName("Salt");
 		
-		//ingredientsRepository.save(ingredientsA);
-		//ingredientsRepository.save(ingredientsB);
-		//ingredientsRepository.save(ingredientsC);
+		/*
+		 * ingredientsRepository.save(ingredientsA);
+		 * ingredientsRepository.save(ingredientsB);
+		 * ingredientsRepository.save(ingredientsC);
+		 */
 		
 	}
 

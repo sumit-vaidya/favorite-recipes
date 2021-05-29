@@ -1,30 +1,28 @@
 package com.project.favorite.recipes.entity;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Convert;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import com.project.favorite.recipes.converter.LocalDateTimeConverter;
 
 @Entity
 public class Users {
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "userId", updatable = false, nullable = false)
-	private Integer userId;
 	
-	@Column(length = 15)
+	@Id
+	@Column(name="PHONE_NO")
+	private  Long  phoneNumber;
+	
+	@Column(length = 20)
 	private String userName;
 	
+	@Column(length = 20)
 	private String userPassword;
 	
-	@Column(length = 25)
+	@Column(length = 30)
 	private String userEmailId;
 	
 	private String status;
@@ -49,15 +47,7 @@ public class Users {
 
 	public void setUpdatedAt(LocalDateTime updatedAt) {
 		this.updatedAt = updatedAt;
-	}
-
-	public Integer getUserId() {
-		return userId;
-	}
-
-	public void setUserId(Integer userId) {
-		this.userId = userId;
-	}
+	}	
 
 	public String getUserName() {
 		return userName;
@@ -91,9 +81,17 @@ public class Users {
 		this.status = status;
 	}
 
+	public Long getPhoneNumber() {
+		return phoneNumber;
+	}
+
+	public void setPhoneNumber(Long phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+
 	@Override
 	public String toString() {
-		return "Users [userId=" + userId + ", userName=" + userName + ", userPassword=" + userPassword
+		return "Users [phoneNumber=" + phoneNumber + ", userName=" + userName + ", userPassword=" + userPassword
 				+ ", userEmailId=" + userEmailId + ", status=" + status + ", createdAt=" + createdAt + ", updatedAt="
 				+ updatedAt + "]";
 	}
