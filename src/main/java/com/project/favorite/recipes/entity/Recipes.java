@@ -1,5 +1,6 @@
 package com.project.favorite.recipes.entity;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,11 +18,31 @@ public class Recipes {
 	@Id
 	private Integer recipesId;
 	
-	@Column(length = 15)
+	@Column(length = 25)
 	private String recipesName;
 	
 	private String recipesType;
 	
+	private LocalDate createdAt;
+	
+	private LocalDate updatedAt;	
+	
+	public LocalDate getCreatedAt() {
+		return createdAt;
+	}
+
+	public void setCreatedAt(LocalDate createdAt) {
+		this.createdAt = createdAt;
+	}
+
+	public LocalDate getUpdatedAt() {
+		return updatedAt;
+	}
+
+	public void setUpdatedAt(LocalDate updatedAt) {
+		this.updatedAt = updatedAt;
+	}
+
 	public Integer getRecipesId() {
 		return recipesId;
 	}
@@ -50,12 +71,18 @@ public class Recipes {
 	@JoinTable(name="RECIPES_INGREDIENTS_MAPPING", joinColumns=@JoinColumn(name="RECIPES_ID_FK"),inverseJoinColumns=@JoinColumn(name="INGREDIENTS_ID_FK"))
 	private List<Ingredients> ingredients = new ArrayList<>();
 
-		public List<Ingredients> getAuthors() {
+		public List<Ingredients> getIngredients() {
 		return ingredients;
 	}
 
-	public void setAuthors(List<Ingredients> ingredients) {
+	public void setIngredients(List<Ingredients> ingredients) {
 		this.ingredients = ingredients;
+	}
+
+	@Override
+	public String toString() {
+		return "Recipes [recipesId=" + recipesId + ", recipesName=" + recipesName + ", recipesType=" + recipesType
+				+ ", createdAt=" + createdAt + ", updatedAt=" + updatedAt + ", ingredients=" + ingredients + "]";
 	}
 	
 }

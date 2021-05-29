@@ -1,5 +1,7 @@
 package com.project.favorite.recipes.entity;
 
+import java.time.LocalDate;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -14,9 +16,30 @@ public class Users {
 	
 	private String userPassword;
 	
+	@Column(length = 25)
 	private String userEmailId;
 	
 	private String status;
+	
+	private LocalDate createdAt;
+	
+	private LocalDate updatedAt;
+
+	public LocalDate getCreatedAt() {
+		return createdAt;
+	}
+
+	public void setCreatedAt(LocalDate createdAt) {
+		this.createdAt = createdAt;
+	}
+
+	public LocalDate getUpdatedAt() {
+		return updatedAt;
+	}
+
+	public void setUpdatedAt(LocalDate updatedAt) {
+		this.updatedAt = updatedAt;
+	}
 
 	public Integer getUserId() {
 		return userId;
@@ -60,8 +83,9 @@ public class Users {
 
 	@Override
 	public String toString() {
-		return "users [userId=" + userId + ", userName=" + userName + ", userPassword=" + userPassword
-				+ ", userEmailId=" + userEmailId + ", status=" + status + "]";
-	}	
-		
+		return "Users [userId=" + userId + ", userName=" + userName + ", userPassword=" + userPassword
+				+ ", userEmailId=" + userEmailId + ", status=" + status + ", createdAt=" + createdAt + ", updatedAt="
+				+ updatedAt + "]";
+	}
+
 }
