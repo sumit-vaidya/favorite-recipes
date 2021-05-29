@@ -6,4 +6,12 @@ import com.project.favorite.recipes.model.IngredientsDTO;
 
 public interface IIngredientsService {
 	List<IngredientsDTO>  searchAllIngredients();
+
+	String addIngredient(IngredientsDTO ingredientsDTO);
+
+	IngredientsDTO updateIngredient(IngredientsDTO ingredientsDTO);
+
+	String deleteIngredient(Integer id);
+
+	IngredientsDTO searchIngredientsByIngredientsName(String ingredientsName);	
 }

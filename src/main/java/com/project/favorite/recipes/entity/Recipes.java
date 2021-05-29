@@ -1,6 +1,5 @@
 package com.project.favorite.recipes.entity;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -78,21 +77,14 @@ public class Recipes {
 	}
 
 	@ManyToMany(cascade=CascadeType.ALL)
-	@JoinTable(name="RECIPES_INGREDIENTS_MAPPING", joinColumns=@JoinColumn(name="RECIPES_ID_FK"),inverseJoinColumns=@JoinColumn(name="INGREDIENTS_ID_FK"))
-	private List<Ingredients> ingredients = new ArrayList<>();
+	@JoinTable(name="RECIPES_SELECTED_INGREDIENTS_MAPPING", joinColumns=@JoinColumn(name="RECIPES_ID_FK"),inverseJoinColumns=@JoinColumn(name="SELECTED_INGREDIENTS_ID_FK"))
+	private List<SelectedIngredients> SelectedIngredients = new ArrayList<>();
 
-		public List<Ingredients> getIngredients() {
-		return ingredients;
+	public List<SelectedIngredients> getSelectedIngredients() {
+		return SelectedIngredients;
 	}
 
-	public void setIngredients(List<Ingredients> ingredients) {
-		this.ingredients = ingredients;
+	public void setSelectedIngredients(List<SelectedIngredients> selectedIngredients) {
+		SelectedIngredients = selectedIngredients;
 	}
-
-	@Override
-	public String toString() {
-		return "Recipes [recipesId=" + recipesId + ", recipesName=" + recipesName + ", recipesType=" + recipesType
-				+ ", createdAt=" + createdAt + ", updatedAt=" + updatedAt + ", ingredients=" + ingredients + "]";
-	}
-	
 }
