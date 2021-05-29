@@ -28,8 +28,8 @@ public class IngredientsRestController {
 	@ApiOperation("Returns all ingredients details from database")
 	public ResponseEntity<List<IngredientsDTO>>  findAllIngredients() {
 		
-		List<IngredientsDTO>  productDTOList=service.searchAllIngredients();
-		return new ResponseEntity<List<IngredientsDTO>>(productDTOList, HttpStatus.OK);		
+		List<IngredientsDTO>  ingredientsDTOList=service.searchAllIngredients();
+		return new ResponseEntity<List<IngredientsDTO>>(ingredientsDTOList, HttpStatus.OK);		
 	}
 	
 	@PostMapping(value="/v1/ingredient/add", consumes="application/json", produces="text/plain")
@@ -41,18 +41,17 @@ public class IngredientsRestController {
 	@PutMapping(value="/v1/ingredient/update", consumes="application/json", produces="text/plain")
 	@ApiOperation("Updates an existing ingredients details in database")
 	public  String  updateIngredient(@RequestBody IngredientsDTO ingredientsDTO) {
+		String message = "Ingredient doesn't exist...";
 		IngredientsDTO dto=service.updateIngredient(ingredientsDTO);
-		if(dto==null) {
-			return "ingredients doesn't exist ";
+		if(dto!=null) {
+			message = "Ingredient is updated...";
 		}
-		else {
-			return "ingredients is updated";
-		}
+		return message;
 	}
 	
 	@GetMapping(value="/v1/ingredient/{ingredientsName}", produces="application/json")
 	@ApiOperation("Returns details of ingredients from database belongs to a specific ingredient name")
-	public IngredientsDTO  findProductsByIngredientsName(@PathVariable String ingredientsName) {
+	public IngredientsDTO  findIngredientsByIngredientsName(@PathVariable String ingredientsName) {
 		return service.searchIngredientsByIngredientsName(ingredientsName);	
 	}
 	
