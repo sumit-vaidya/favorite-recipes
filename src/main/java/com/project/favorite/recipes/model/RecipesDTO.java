@@ -19,6 +19,16 @@ public class RecipesDTO implements Serializable {
 	
 	private Integer noOfPerson;
 	
+	private String cookingInstruction;
+	
+	public String getCookingInstruction() {
+		return cookingInstruction;
+	}
+
+	public void setCookingInstruction(String cookingInstruction) {
+		this.cookingInstruction = cookingInstruction;
+	}
+
 	public Integer getNoOfPerson() {
 		return noOfPerson;
 	}
