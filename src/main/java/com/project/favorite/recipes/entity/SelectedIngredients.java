@@ -5,6 +5,8 @@ import java.time.LocalDateTime;
 import javax.persistence.Column;
 import javax.persistence.Convert;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import com.project.favorite.recipes.converter.LocalDateTimeConverter;
@@ -12,7 +14,10 @@ import com.project.favorite.recipes.converter.LocalDateTimeConverter;
 @Entity
 public class SelectedIngredients {
 	@Id
-	@Column(name = "selectedIngredientId", updatable = false, nullable = false)
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id", updatable = false, nullable = false)
+	private Integer id;
+	
 	private Integer selectedIngredientId;
 	
 	@Column(length = 25)
@@ -23,6 +28,14 @@ public class SelectedIngredients {
 	
 	@Convert(converter = LocalDateTimeConverter.class)
 	private LocalDateTime updatedAt;
+	
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
 	public Integer getSelectedIngredientId() {
 		return selectedIngredientId;

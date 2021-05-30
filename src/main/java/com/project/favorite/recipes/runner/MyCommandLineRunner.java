@@ -34,9 +34,9 @@ public class MyCommandLineRunner implements CommandLineRunner {
 		Ingredients ingredientsC = new Ingredients();
 		ingredientsC.setIngredientsName("Salt");
 
-//		ingredientsRepository.save(ingredientsA);
-//		ingredientsRepository.save(ingredientsB);
-//		ingredientsRepository.save(ingredientsC);
+		//ingredientsRepository.save(ingredientsA);
+		//ingredientsRepository.save(ingredientsB);
+		//ingredientsRepository.save(ingredientsC);
 
 		Recipes recipes = new Recipes();
 		recipes.setRecipesName("Maggi");
@@ -60,7 +60,7 @@ public class MyCommandLineRunner implements CommandLineRunner {
 
 		recipes.setSelectedIngredients(SelectedList);
 
-		//recipesRepository.save(recipes);
+		recipesRepository.save(recipes);
 	}
 
 }

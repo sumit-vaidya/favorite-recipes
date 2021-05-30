@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.project.favorite.recipes.model.RecipesDTO;
+import com.project.favorite.recipes.model.SelectedIngredientsDTO;
 import com.project.favorite.recipes.service.IRecipesService;
 
 import io.swagger.annotations.ApiOperation;

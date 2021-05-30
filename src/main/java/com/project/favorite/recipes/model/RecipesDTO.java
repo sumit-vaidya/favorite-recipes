@@ -69,5 +69,14 @@ public class RecipesDTO implements Serializable {
 
 	public void setSelectedIngredientsList(List<SelectedIngredientsDTO> selectedIngredientsList) {
 		this.selectedIngredientsList = selectedIngredientsList;
+	}
+
+	@Override
+	public String toString() {
+		return "RecipesDTO [recipesId=" + recipesId + ", recipesName=" + recipesName + ", recipesType=" + recipesType
+				+ ", noOfPerson=" + noOfPerson + ", cookingInstruction=" + cookingInstruction
+				+ ", selectedIngredientsList=" + selectedIngredientsList + "]";
 	}	
+	
+	
 }
