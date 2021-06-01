@@ -9,9 +9,16 @@ import javax.persistence.Id;
 
 import com.project.favorite.recipes.converter.LocalDateTimeConverter;
 
+/**
+ * {@link Users}
+ * 
+ * Users entity class created for storing user information in the database table
+ * 
+ * @author Sumit.Vaidya
+ *
+ */
 @Entity
-public class Users {
-	
+public class Users {	
 	@Id
 	@Column(name="PHONE_NO")
 	private  Long  phoneNumber;
@@ -88,12 +95,4 @@ public class Users {
 	public void setPhoneNumber(Long phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
-
-	@Override
-	public String toString() {
-		return "Users [phoneNumber=" + phoneNumber + ", userName=" + userName + ", userPassword=" + userPassword
-				+ ", userEmailId=" + userEmailId + ", status=" + status + ", createdAt=" + createdAt + ", updatedAt="
-				+ updatedAt + "]";
-	}
-
 }

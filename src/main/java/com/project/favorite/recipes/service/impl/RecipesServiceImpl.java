@@ -19,7 +19,7 @@ import com.project.favorite.recipes.service.IRecipesService;
 public class RecipesServiceImpl implements IRecipesService {
 
 	@Autowired
-	RecipesRepository recipesRepository;
+	private RecipesRepository recipesRepository;
 	
 	@Override
 	public List<RecipesDTO> searchAllRecipes() {
@@ -27,11 +27,23 @@ public class RecipesServiceImpl implements IRecipesService {
 
 		List<RecipesDTO> recipesDTOList = new ArrayList<>();
 
-		recipesList.forEach(recipe -> {
+		for(Recipes recipe : recipesList) {
 			RecipesDTO recipesDTO = new RecipesDTO();
-			BeanUtils.copyProperties(recipe, recipesDTO);
+			recipesDTO.setRecipesId(recipe.getRecipesId());
+			recipesDTO.setRecipesName(recipe.getRecipesName());
+			recipesDTO.setRecipesType(recipe.getRecipesType());
+			recipesDTO.setNoOfPerson(recipe.getNoOfPerson());
+			recipesDTO.setCookingInstruction(recipe.getCookingInstruction());
+			List<SelectedIngredientsDTO> list = new ArrayList<SelectedIngredientsDTO>();
+			for(SelectedIngredients selected : recipe.getSelectedIngredients()) {
+				SelectedIngredientsDTO selectedDto = new SelectedIngredientsDTO();
+				selectedDto.setSelectedIngredientId(selected.getSelectedIngredientId());
+				selectedDto.setSelectedIngredientsName(selected.getSelectedIngredientsName());
+				list.add(selectedDto);
+			}
+			recipesDTO.setSelectedIngredientsList(list);
 			recipesDTOList.add(recipesDTO);
-		});
+		};
 
 		return recipesDTOList;
 	}

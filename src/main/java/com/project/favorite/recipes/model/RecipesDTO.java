@@ -4,6 +4,14 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * {@link RecipesDTO}
+ * 
+ * Recipes dto is created to store recipe details from UI and to UI
+ * 
+ * @author Sumit.Vaidya
+ *
+ */
 public class RecipesDTO implements Serializable {
 
 	/**
@@ -69,14 +77,5 @@ public class RecipesDTO implements Serializable {
 
 	public void setSelectedIngredientsList(List<SelectedIngredientsDTO> selectedIngredientsList) {
 		this.selectedIngredientsList = selectedIngredientsList;
-	}
-
-	@Override
-	public String toString() {
-		return "RecipesDTO [recipesId=" + recipesId + ", recipesName=" + recipesName + ", recipesType=" + recipesType
-				+ ", noOfPerson=" + noOfPerson + ", cookingInstruction=" + cookingInstruction
-				+ ", selectedIngredientsList=" + selectedIngredientsList + "]";
 	}	
-	
-	
 }

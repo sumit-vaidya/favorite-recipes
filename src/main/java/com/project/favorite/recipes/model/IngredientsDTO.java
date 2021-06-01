@@ -2,6 +2,16 @@ package com.project.favorite.recipes.model;
 
 import java.io.Serializable;
 
+
+/**
+ * 
+ * {@link IngredientsDTO}
+ * 
+ * IngredientsDTO class has been created for front-end to connect with back-end entity
+ * 
+ * @author Sumit.Vaidya
+ *
+ */
 public class IngredientsDTO implements Serializable {
 
 	/**

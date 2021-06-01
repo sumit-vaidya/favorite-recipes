@@ -11,6 +11,14 @@ import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
+/**
+ * {@link FavoriteRecipesApplication}
+ * 
+ * Favorite recipes application is the spring boot entry point
+ * 
+ * @author Sumit.Vaidya
+ *
+ */
 @SpringBootApplication
 @EnableSwagger2
 public class FavoriteRecipesApplication implements WebMvcConfigurer {
@@ -21,7 +29,7 @@ public class FavoriteRecipesApplication implements WebMvcConfigurer {
 	
 	@Override
 	public void addCorsMappings(CorsRegistry registry) {
-		registry.addMapping("/**").allowedOrigins("http://localhost:3000");
+		registry.addMapping("/**").allowedOrigins("http://localhost:3000").allowedMethods("GET", "POST", "DELETE", "PUT");
 	}
 
 	@Bean

@@ -2,6 +2,15 @@ package com.project.favorite.recipes.model;
 
 import java.io.Serializable;
 
+/**
+ * {@link LoginUserDTO}
+ * 
+ * Login user dto has been created for front-end to connect with back-end entity and
+ * It stores the login user information
+ * 
+ * @author Sumit.Vaidya
+ *
+ */
 public class LoginUserDTO implements Serializable {
 
 	/**

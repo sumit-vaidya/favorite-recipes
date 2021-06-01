@@ -17,6 +17,14 @@ import javax.persistence.OneToMany;
 
 import com.project.favorite.recipes.converter.LocalDateTimeConverter;
 
+/**
+ * {@link Recipes}
+ * 
+ * Recipes entity class created to support for CRUD operations on the database table
+ * 
+ * @author Sumit.Vaidya
+ *
+ */
 @Entity
 public class Recipes {
 
@@ -33,6 +41,12 @@ public class Recipes {
 	private Integer noOfPerson;
 
 	private String cookingInstruction;
+	
+	@Convert(converter = LocalDateTimeConverter.class)
+	private LocalDateTime createdAt;
+
+	@Convert(converter = LocalDateTimeConverter.class)
+	private LocalDateTime updatedAt;
 
 	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER, orphanRemoval = true)
 	@JoinColumn(name="RECIPESID_FK")
@@ -53,12 +67,6 @@ public class Recipes {
 	public void setNoOfPerson(Integer noOfPerson) {
 		this.noOfPerson = noOfPerson;
 	}
-
-	@Convert(converter = LocalDateTimeConverter.class)
-	private LocalDateTime createdAt;
-
-	@Convert(converter = LocalDateTimeConverter.class)
-	private LocalDateTime updatedAt;
 
 	public LocalDateTime getCreatedAt() {
 		return createdAt;

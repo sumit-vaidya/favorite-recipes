@@ -11,6 +11,16 @@ import javax.persistence.Id;
 
 import com.project.favorite.recipes.converter.LocalDateTimeConverter;
 
+/**
+ * 
+ * {@link Ingredients}
+ * 
+ * Ingredients entity class created to persist ingredient in to database table
+ * 
+ * @author Sumit.Vaidya
+ *
+ */
+
 @Entity
 public class Ingredients {
 	@Id
@@ -66,12 +76,4 @@ public class Ingredients {
 	public void setUpdatedAt(LocalDateTime updatedAt) {
 		this.updatedAt = updatedAt;
 	}
-
-
-	@Override
-	public String toString() {
-		return "Ingredients [ingredientId=" + ingredientId + ", ingredientsName=" + ingredientsName + ", createdAt="
-				+ createdAt + ", updatedAt=" + updatedAt + "]";
-	}
-	
 }

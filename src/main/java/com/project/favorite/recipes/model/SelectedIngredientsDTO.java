@@ -2,6 +2,14 @@ package com.project.favorite.recipes.model;
 
 import java.io.Serializable;
 
+/**
+ * {@link SelectedIngredientsDTO}
+ * 
+ * Selected ingredients dto is created to store the selected ingredients from UI and to the UI
+ * 
+ * @author Sumit.Vaidya
+ *
+ */
 public class SelectedIngredientsDTO implements Serializable {
 
 	/**

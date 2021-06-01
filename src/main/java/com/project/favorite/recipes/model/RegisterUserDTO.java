@@ -2,6 +2,14 @@ package com.project.favorite.recipes.model;
 
 import java.io.Serializable;
 
+/**
+ * {@link RegisterUserDTO}
+ * 
+ * Register user dto used to store register user information from UI and send to UI
+ * 
+ * @author Sumit.Vaidya
+ *
+ */
 public class RegisterUserDTO implements Serializable {
 
 	/**

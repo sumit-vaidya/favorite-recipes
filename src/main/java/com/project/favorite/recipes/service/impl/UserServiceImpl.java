@@ -15,7 +15,7 @@ import com.project.favorite.recipes.service.IUserService;
 public class UserServiceImpl implements IUserService {
 
 	@Autowired
-	UsersRepository usersRepository;
+	private UsersRepository usersRepository;
 
 	@Override
 	public boolean addUser(RegisterUserDTO registerUserDto) {

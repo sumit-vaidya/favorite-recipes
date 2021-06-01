@@ -6,6 +6,12 @@ import java.util.Optional;
 
 import javax.persistence.AttributeConverter;
 
+/**
+ * {@link LocalDateTimeConverter}
+ * Local date time converter class has been created for local date handling
+ * @author Sumit.Vaidya
+ *
+ */
 public class LocalDateTimeConverter implements AttributeConverter<LocalDateTime, Timestamp> {
 	@Override
 	  public Timestamp convertToDatabaseColumn(LocalDateTime localDateTime) {

@@ -11,6 +11,12 @@ import javax.persistence.Id;
 
 import com.project.favorite.recipes.converter.LocalDateTimeConverter;
 
+/**
+ * {@link SelectedIngredients}
+ * Selected Ingredients entity class created to store selected ingredients from the UI to database table
+ * @author Sumit.Vaidya
+ *
+ */
 @Entity
 public class SelectedIngredients {
 	@Id
