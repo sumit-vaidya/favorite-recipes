@@ -4,6 +4,8 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,14 +17,24 @@ import com.project.favorite.recipes.model.SelectedIngredientsDTO;
 import com.project.favorite.recipes.repository.RecipesRepository;
 import com.project.favorite.recipes.service.IRecipesService;
 
+/**
+ * {@link RecipesServiceImpl}
+ * 
+ * Recipe service impl is used to write business logic for recipes
+ * @author Sumit.Vaidya
+ *
+ */
 @Service
 public class RecipesServiceImpl implements IRecipesService {
 
+	private static final Logger logger = LogManager.getLogger(RecipesServiceImpl.class);
+	
 	@Autowired
 	private RecipesRepository recipesRepository;
 	
 	@Override
 	public List<RecipesDTO> searchAllRecipes() {
+		logger.info("FR-INFO Method  RecipesServiceImpl.searchAllRecipes");
 		List<Recipes> recipesList = recipesRepository.findAll();
 
 		List<RecipesDTO> recipesDTOList = new ArrayList<>();
@@ -50,6 +62,7 @@ public class RecipesServiceImpl implements IRecipesService {
 
 	@Override
 	public String addRecipe(RecipesDTO recipesDTO) {
+		logger.info("FR-INFO Method  RecipesServiceImpl.addRecipe");
 		Recipes recipes=new Recipes();
 		recipes.setRecipesId(recipesDTO.getRecipesId());
 		recipes.setRecipesName(recipesDTO.getRecipesName());
@@ -81,6 +94,7 @@ public class RecipesServiceImpl implements IRecipesService {
 
 	@Override
 	public RecipesDTO searchRecipeByRecipeName(String recipeName) {
+		logger.info("FR-INFO Method  RecipesServiceImpl.searchRecipeByRecipeName : "+ recipeName);
 		Recipes searchedRecipes = recipesRepository.findByRecipesName(recipeName);
 		
 		RecipesDTO recipesDTO = new RecipesDTO();
@@ -91,6 +105,7 @@ public class RecipesServiceImpl implements IRecipesService {
 
 	@Override
 	public String deleteRecipe(Integer id) {
+		logger.info("FR-INFO Method  RecipesServiceImpl.deleteRecipe : "+ id);
 		String message = "Recipe doesn't exist";
 		if(recipesRepository.existsById(id)) {
 			recipesRepository.deleteById(id);
@@ -101,6 +116,7 @@ public class RecipesServiceImpl implements IRecipesService {
 
 	@Override
 	public RecipesDTO updateRecipe(RecipesDTO recipesDTO) {
+		logger.info("FR-INFO Method  RecipesServiceImpl.updateRecipe");
 		Recipes recipes=new Recipes();
 		BeanUtils.copyProperties(recipesDTO, recipes);
 		if(recipesRepository.existsById(recipes.getRecipesId())) {
