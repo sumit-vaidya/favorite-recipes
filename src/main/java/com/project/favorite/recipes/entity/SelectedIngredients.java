@@ -1,15 +1,11 @@
 package com.project.favorite.recipes.entity;
 
-import java.time.LocalDateTime;
-
 import javax.persistence.Column;
-import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-import com.project.favorite.recipes.converter.LocalDateTimeConverter;
 
 /**
  * {@link SelectedIngredients}
@@ -27,13 +23,7 @@ public class SelectedIngredients {
 	private Integer selectedIngredientId;
 	
 	@Column(length = 25)
-	private String selectedIngredientsName;
-	
-	@Convert(converter = LocalDateTimeConverter.class)
-	private LocalDateTime createdAt;
-	
-	@Convert(converter = LocalDateTimeConverter.class)
-	private LocalDateTime updatedAt;
+	private String selectedIngredientsName;	
 	
 	public Integer getId() {
 		return id;
@@ -59,20 +49,4 @@ public class SelectedIngredients {
 		this.selectedIngredientsName = selectedIngredientsName;
 	}
 
-	public LocalDateTime getCreatedAt() {
-		return createdAt;
-	}
-
-	public void setCreatedAt(LocalDateTime createdAt) {
-		this.createdAt = createdAt;
-	}
-
-	public LocalDateTime getUpdatedAt() {
-		return updatedAt;
-	}
-
-	public void setUpdatedAt(LocalDateTime updatedAt) {
-		this.updatedAt = updatedAt;
-	}
-	
 }

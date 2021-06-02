@@ -38,7 +38,7 @@ public class RecipesServiceImpl implements IRecipesService {
 		List<Recipes> recipesList = recipesRepository.findAll();
 
 		List<RecipesDTO> recipesDTOList = new ArrayList<>();
-
+		//Recipes DTO object formation to show it on the UI
 		for(Recipes recipe : recipesList) {
 			RecipesDTO recipesDTO = new RecipesDTO();
 			recipesDTO.setRecipesId(recipe.getRecipesId());
@@ -46,14 +46,8 @@ public class RecipesServiceImpl implements IRecipesService {
 			recipesDTO.setRecipesType(recipe.getRecipesType());
 			recipesDTO.setNoOfPerson(recipe.getNoOfPerson());
 			recipesDTO.setCookingInstruction(recipe.getCookingInstruction());
-			List<SelectedIngredientsDTO> list = new ArrayList<SelectedIngredientsDTO>();
-			for(SelectedIngredients selected : recipe.getSelectedIngredients()) {
-				SelectedIngredientsDTO selectedDto = new SelectedIngredientsDTO();
-				selectedDto.setSelectedIngredientId(selected.getSelectedIngredientId());
-				selectedDto.setSelectedIngredientsName(selected.getSelectedIngredientsName());
-				list.add(selectedDto);
-			}
-			recipesDTO.setSelectedIngredientsList(list);
+			
+			extractedSelectedIngredients(recipe, recipesDTO);
 			recipesDTOList.add(recipesDTO);
 		};
 
@@ -63,21 +57,13 @@ public class RecipesServiceImpl implements IRecipesService {
 	@Override
 	public String addRecipe(RecipesDTO recipesDTO) {
 		logger.info("FR-INFO Method  RecipesServiceImpl.addRecipe");
+		//Formation of recipe object to store in the recipe table of database
 		Recipes recipes=new Recipes();
 		recipes.setRecipesId(recipesDTO.getRecipesId());
 		recipes.setRecipesName(recipesDTO.getRecipesName());
 		recipes.setRecipesType(recipesDTO.getRecipesType());
 		recipes.setNoOfPerson(recipesDTO.getNoOfPerson());
-		List<SelectedIngredientsDTO> list = recipesDTO.getSelectedIngredientsList();
-		List<SelectedIngredients> selectedIngredientsList = new ArrayList<>();
-		for(SelectedIngredientsDTO dto : list) {
-			SelectedIngredients selectedIngredients =new SelectedIngredients();
-			selectedIngredients.setSelectedIngredientId(dto.getSelectedIngredientId());
-			selectedIngredients.setSelectedIngredientsName(dto.getSelectedIngredientsName());
-			selectedIngredients.setCreatedAt(LocalDateTime.now());
-			selectedIngredients.setCreatedAt(LocalDateTime.now());
-			selectedIngredientsList.add(selectedIngredients);
-		}
+		List<SelectedIngredients> selectedIngredientsList = formedSelectedIngredientsForDB(recipesDTO);
 		recipes.setSelectedIngredients(selectedIngredientsList);
 		recipes.setCookingInstruction(recipesDTO.getCookingInstruction());
 		recipes.setCreatedAt(LocalDateTime.now());
@@ -92,6 +78,18 @@ public class RecipesServiceImpl implements IRecipesService {
 		}
 	}
 
+	private List<SelectedIngredients> formedSelectedIngredientsForDB(RecipesDTO recipesDTO) {
+		List<SelectedIngredientsDTO> list = recipesDTO.getSelectedIngredientsList();
+		List<SelectedIngredients> selectedIngredientsList = new ArrayList<>();		
+		for(SelectedIngredientsDTO dto : list) {
+			SelectedIngredients selectedIngredients =new SelectedIngredients();
+			selectedIngredients.setSelectedIngredientId(dto.getSelectedIngredientId());
+			selectedIngredients.setSelectedIngredientsName(dto.getSelectedIngredientsName());
+			selectedIngredientsList.add(selectedIngredients);
+		}
+		return selectedIngredientsList;
+	}
+
 	@Override
 	public RecipesDTO searchRecipeByRecipeName(String recipeName) {
 		logger.info("FR-INFO Method  RecipesServiceImpl.searchRecipeByRecipeName : "+ recipeName);
@@ -100,7 +98,20 @@ public class RecipesServiceImpl implements IRecipesService {
 		RecipesDTO recipesDTO = new RecipesDTO();
 		BeanUtils.copyProperties(searchedRecipes, recipesDTO);
 		
+		extractedSelectedIngredients(searchedRecipes, recipesDTO);
+		
 		return recipesDTO;
+	}
+
+	private void extractedSelectedIngredients(Recipes searchedRecipes, RecipesDTO recipesDTO) {
+		List<SelectedIngredientsDTO> list = new ArrayList<SelectedIngredientsDTO>();			
+		for(SelectedIngredients selected : searchedRecipes.getSelectedIngredients()) {
+			SelectedIngredientsDTO selectedDto = new SelectedIngredientsDTO();
+			selectedDto.setSelectedIngredientId(selected.getSelectedIngredientId());
+			selectedDto.setSelectedIngredientsName(selected.getSelectedIngredientsName());
+			list.add(selectedDto);
+		}
+		recipesDTO.setSelectedIngredientsList(list);
 	}
 
 	@Override
@@ -117,10 +128,13 @@ public class RecipesServiceImpl implements IRecipesService {
 	@Override
 	public RecipesDTO updateRecipe(RecipesDTO recipesDTO) {
 		logger.info("FR-INFO Method  RecipesServiceImpl.updateRecipe");
-		Recipes recipes=new Recipes();
+		Recipes recipes = new Recipes();
 		BeanUtils.copyProperties(recipesDTO, recipes);
 		if(recipesRepository.existsById(recipes.getRecipesId())) {
-			recipesRepository.saveAndFlush(recipes);
+			List<SelectedIngredients> selectedIngredientsList = formedSelectedIngredientsForDB(recipesDTO);
+			recipes.setSelectedIngredients(selectedIngredientsList);
+			recipes.setUpdatedAt(LocalDateTime.now());
+			recipesRepository.saveAndFlush(recipes);			
 			return recipesDTO;
 		}
 		return null;

@@ -33,6 +33,7 @@ public class UserServiceImpl implements IUserService {
 	public boolean addUser(RegisterUserDTO registerUserDto) {
 		logger.info("FR-INFO Method  UserServiceImpl.addUser");
 		boolean flag = false;
+		//trying to find if the user is already register by phone number
 		if (!usersRepository.existsById(registerUserDto.getPhoneNumber())) {
 			Users users = new Users();
 			users.setPhoneNumber(registerUserDto.getPhoneNumber());
@@ -50,6 +51,7 @@ public class UserServiceImpl implements IUserService {
 	@Override
 	public boolean loginUser(LoginUserDTO loginUserDto) {
 		logger.info("FR-INFO Method  UserServiceImpl.loginUser");
+		//checking if the current user is available for login
 		return (usersRepository.checkLogin(loginUserDto.getUserName(), loginUserDto.getPassword()) == 1) ? true : false;
 	}
 
