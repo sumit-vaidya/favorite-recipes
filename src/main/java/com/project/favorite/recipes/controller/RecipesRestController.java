@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.project.favorite.recipes.Exceptions.FavoriteRecipesException;
 import com.project.favorite.recipes.model.RecipesDTO;
 import com.project.favorite.recipes.service.IRecipesService;
 
@@ -65,7 +66,7 @@ public class RecipesRestController {
 	
 	@GetMapping(value="/v1/recipe/{recipeName}", produces="application/json")
 	@ApiOperation("Returns details of recipe from database belongs to a specific recipe name.")
-	public RecipesDTO  findRecipeByRecipeName(@PathVariable String recipeName) {
+	public RecipesDTO  findRecipeByRecipeName(@PathVariable String recipeName) throws FavoriteRecipesException {
 		logger.info("FR-INFO Method  RecipesRestController.findRecipeByRecipeName  : "+ recipeName);
 		return service.searchRecipeByRecipeName(recipeName);	
 	}

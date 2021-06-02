@@ -2,6 +2,7 @@ package com.project.favorite.recipes.model;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -27,11 +28,11 @@ public class RecipesDTO implements Serializable {
 	
 	private Integer noOfPerson;
 	
-	private String cookingInstruction;
+	private String cookingInstruction;	
+	
+	private List<SelectedIngredientsDTO> selectedIngredientsList = new ArrayList<>();
 	
 	private LocalDateTime updatedAt;
-	
-	private List<SelectedIngredientsDTO> selectedIngredientsList;
 	
 	public String getCookingInstruction() {
 		return cookingInstruction;
@@ -77,7 +78,7 @@ public class RecipesDTO implements Serializable {
 		return selectedIngredientsList;
 	}
 
-	public void setSelectedIngredientsList(List<SelectedIngredientsDTO> selectedIngredientsList) {
+	public void setSelectedIngredientsList(List<SelectedIngredientsDTO> selectedIngredientsList) {		
 		this.selectedIngredientsList = selectedIngredientsList;
 	}
 
