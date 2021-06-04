@@ -43,7 +43,7 @@ public class RecipesServiceImpl implements IRecipesService {
 
 		List<RecipesDTO> recipesDTOList = new ArrayList<>();
 		// Recipes DTO object formation to show it on the UI
-		for (Recipes recipe : recipesList) {
+		recipesList.forEach(recipe -> {
 			RecipesDTO recipesDTO = new RecipesDTO();
 			recipesDTO.setRecipesId(recipe.getRecipesId());
 			recipesDTO.setRecipesName(recipe.getRecipesName());
@@ -53,9 +53,7 @@ public class RecipesServiceImpl implements IRecipesService {
 			recipesDTO.setUpdatedAt(recipe.getUpdatedAt());
 			extractedSelectedIngredients(recipe, recipesDTO);
 			recipesDTOList.add(recipesDTO);
-		}
-		;
-
+		});
 		return recipesDTOList;
 	}
 
@@ -86,12 +84,12 @@ public class RecipesServiceImpl implements IRecipesService {
 	private List<SelectedIngredients> formedSelectedIngredientsForDB(RecipesDTO recipesDTO) {
 		List<SelectedIngredientsDTO> list = recipesDTO.getSelectedIngredientsList();
 		List<SelectedIngredients> selectedIngredientsList = new ArrayList<>();
-		for (SelectedIngredientsDTO dto : list) {
+		list.forEach(dto ->{
 			SelectedIngredients selectedIngredients = new SelectedIngredients();
 			selectedIngredients.setSelectedIngredientId(dto.getSelectedIngredientId());
 			selectedIngredients.setSelectedIngredientsName(dto.getSelectedIngredientsName());
 			selectedIngredientsList.add(selectedIngredients);
-		}
+		});
 		return selectedIngredientsList;
 	}
 
@@ -135,11 +133,13 @@ public class RecipesServiceImpl implements IRecipesService {
 
 	private void extractedSelectedIngredients(Recipes searchedRecipes, RecipesDTO recipesDTO) {
 		List<SelectedIngredientsDTO> list = new ArrayList<SelectedIngredientsDTO>();
-		for (SelectedIngredients selected : searchedRecipes.getSelectedIngredients()) {
-			SelectedIngredientsDTO selectedDto = new SelectedIngredientsDTO();
-			selectedDto.setSelectedIngredientId(selected.getSelectedIngredientId());
-			selectedDto.setSelectedIngredientsName(selected.getSelectedIngredientsName());
-			list.add(selectedDto);
+		if(!searchedRecipes.getSelectedIngredients().isEmpty()) {
+			searchedRecipes.getSelectedIngredients().forEach(selected ->{
+				SelectedIngredientsDTO selectedDto = new SelectedIngredientsDTO();
+				selectedDto.setSelectedIngredientId(selected.getSelectedIngredientId());
+				selectedDto.setSelectedIngredientsName(selected.getSelectedIngredientsName());
+				list.add(selectedDto);
+			});
 		}
 		recipesDTO.setSelectedIngredientsList(list);
 	}
